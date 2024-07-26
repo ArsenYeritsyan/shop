@@ -4,8 +4,10 @@
     <meta name="layout" content="main"/>
     <title>Products</title>
 </head>
+
 <body>
 <h1>Products</h1>
+
 <p>${flash.message}</p>
 
 <!-- Product List -->

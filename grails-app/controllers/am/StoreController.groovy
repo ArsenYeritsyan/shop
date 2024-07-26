@@ -1,53 +1,54 @@
 package am
 
-import am.domain.Store
 import am.dto.StoreDTO
-import grails.rest.RestfulController
-import grails.validation.ValidationException
 import am.service.StoreService
-import am.service.StoreServiceImpl
-import am.service.ProductServiceI
+import am.service.StoreServiceI
 
-class StoreController extends RestfulController<Store> {
-    static responseFormats = ['json', 'xml']
+class StoreController {
+
     StoreService storeService
-    StoreServiceImpl storeServiceImpl
-    ProductServiceI productService
 
-    StoreController() {
-        super(Store)
-    }
+    static allowedMethods = [save: 'POST', update: 'POST', delete: 'POST']
 
     def index() {
-        respond storeService.findAll(), model:[storeList: storeService.findAll()]
+        respond([storeList: storeService.findAll()])
     }
 
     def save(StoreDTO storeDTO) {
         try {
-            Store store = storeService.save(storeDTO.code, storeDTO.name, storeDTO.address)
+            storeService.save(storeDTO)
             flash.message = "Store saved successfully"
-            redirect action: "index"
-        } catch (ValidationException e) {
-            flash.message = "Failed to save store: ${e.errors}"
-            redirect action: "index"
+        } catch (Exception e) {
+            flash.message = "Failed to save store: ${e.message}"
         }
+        redirect(controller: 'application', action: 'index')
     }
 
     def delete(Long id) {
         storeService.deleteById(id)
         flash.message = "Store deleted successfully"
-        redirect action: "index"
+        redirect(controller: 'application', action: 'index')
     }
 
-    def addProduct(Long storeId, Long productId) {
-        storeServiceImpl.addProduct(storeId, productId)
-        flash.message = "Product added to store successfully"
-        redirect action: "index"
+    def edit(Long id) {
+        def store = storeService.findById(id)
+        if (!store) {
+            flash.message = "Store not found"
+            redirect(controller: 'application', action: 'index')
+            return
+        }
+        render(view: 'edit', model: [store: store])
     }
 
-    def removeProduct(Long storeId, Long productId) {
-        storeServiceImpl.removeProduct(storeId, productId)
-        flash.message = "Product removed from store successfully"
-        redirect action: "index"
+    def update(StoreDTO storeDTO) {
+        try {
+            storeService.update(params.id.toLong(), storeDTO)
+            flash.message = "Store updated successfully"
+        } catch (Exception e) {
+            flash.message = "Failed to update store: ${e.message}"
+            render(view: 'edit', model: [store: storeService.findById(params.id.toLong())])
+            return
+        }
+        redirect(controller: 'application', action: 'index')
     }
 }

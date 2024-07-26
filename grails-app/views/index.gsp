@@ -51,6 +51,7 @@
         }
     </script>
 </head>
+
 <body>
 <h1>Store Management</h1>
 

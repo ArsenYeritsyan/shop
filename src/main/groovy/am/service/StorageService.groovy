@@ -1,19 +1,42 @@
 package am.service
 
 import am.domain.Storage
-import grails.gorm.services.Service
+import am.domain.Product
+import am.dto.StorageDTO
+import grails.gorm.transactions.Transactional
 
-@Service(Storage)
-interface StorageService {
-    Storage save(String code, String name)
+@Transactional
+class StorageService implements StorageServiceI {
+    @Override
+    Storage save(StorageDTO storageDTO) {
+        new Storage(code: storageDTO.code, name: storageDTO.name).save(failOnError: true)
+    }
 
-    Storage findById(Long id)
+    @Override
+    Storage findById(Long id) {
+        Storage.get(id)
+    }
 
-    List<Storage> findAll()
+    @Override
+    List<Storage> findAll() {
+        Storage.list()
+    }
 
-    void deleteById(Long id)
+    @Override
+    void deleteById(Long id) {
+        Storage storage = findById(id)
+        if (storage) {
+            storage.delete()
+        }
+    }
 
-//    void addProduct(Long storageId, Long productId)
+    @Override
+    void addProduct(Storage storage, Product product) {
+        storage.addToProducts(product).save(failOnError: true)
+    }
 
-//    void removeProduct(Long storageId, Long productId)
+    @Override
+    void removeProduct(Storage storage, Product product) {
+        storage.removeFromProducts(product).save(failOnError: true)
+    }
 }

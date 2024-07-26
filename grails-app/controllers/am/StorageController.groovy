@@ -1,53 +1,53 @@
 package am
 
-import am.domain.Storage
 import am.dto.StorageDTO
-import grails.rest.RestfulController
-import grails.validation.ValidationException
 import am.service.StorageService
-import am.service.StorageServiceImpl
-import am.service.ProductServiceI
 
-class StorageController extends RestfulController<Storage> {
-    static responseFormats = ['json', 'xml']
+class StorageController {
+
     StorageService storageService
-    StorageServiceImpl storageServiceImpl
-    ProductServiceI productService
 
-    StorageController() {
-        super(Storage)
-    }
+    static allowedMethods = [save: 'POST', update: 'POST', delete: 'POST']
 
     def index() {
-        respond storageService.findAll(), model:[storageList: storageService.findAll()]
+        respond([storageList: storageService.findAll()])
     }
 
     def save(StorageDTO storageDTO) {
         try {
-            Storage storage = storageService.save(storageDTO.code, storageDTO.name)
+            storageService.save(storageDTO)
             flash.message = "Storage saved successfully"
-            redirect action: "index"
-        } catch (ValidationException e) {
-            flash.message = "Failed to save storage: ${e.errors}"
-            redirect action: "index"
+        } catch (Exception e) {
+            flash.message = "Failed to save storage: ${e.message}"
         }
+        redirect(controller: 'application', action: 'index')
     }
 
     def delete(Long id) {
         storageService.deleteById(id)
         flash.message = "Storage deleted successfully"
-        redirect action: "index"
+        redirect(controller: 'application', action: 'index')
     }
 
-    def addProduct(Long storageId, Long productId) {
-        storageServiceImpl.addProduct(storageId, productId)
-        flash.message = "Product added to storage successfully"
-        redirect action: "index"
+    def edit(Long id) {
+        def storage = storageService.findById(id)
+        if (!storage) {
+            flash.message = "Storage not found"
+            redirect(controller: 'application', action: 'index')
+            return
+        }
+        render(view: 'edit', model: [storage: storage])
     }
 
-    def removeProduct(Long storageId, Long productId) {
-        storageServiceImpl.removeProduct(storageId, productId)
-        flash.message = "Product removed from storage successfully"
-        redirect action: "index"
+    def update(StorageDTO storageDTO) {
+        try {
+            storageService.update(params.id.toLong(), storageDTO)
+            flash.message = "Storage updated successfully"
+        } catch (Exception e) {
+            flash.message = "Failed to update storage: ${e.message}"
+            render(view: 'edit', model: [storage: storageService.findById(params.id.toLong())])
+            return
+        }
+        redirect(controller: 'application', action: 'index')
     }
 }

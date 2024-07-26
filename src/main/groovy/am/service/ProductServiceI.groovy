@@ -1,11 +1,12 @@
 package am.service
 
 import am.domain.Product
-import grails.gorm.services.Service
+import am.domain.Store
+import grails.gorm.transactions.Transactional
 
-@Service(Product)
+@Transactional
 interface ProductServiceI {
-    Product save(String code, String name, BigDecimal price, Date dateOfManufacture, Date deadline)
+    Product save(String code, String name, BigDecimal price, Date dateOfManufacture, Date deadline, Store store)
 
     Product findById(Long id)
 

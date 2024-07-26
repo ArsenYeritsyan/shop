@@ -1,9 +1,10 @@
 package am
 
-import grails.testing.mixin.integration.Integration
 import grails.gorm.transactions.Rollback
+import grails.testing.mixin.integration.Integration
 import spock.lang.Specification
 import spock.lang.Stepwise
+
 import static io.restassured.RestAssured.*
 import static io.restassured.http.ContentType.JSON
 
@@ -82,11 +83,11 @@ class StorageControllerSpec extends Specification {
         def productResponse = given()
                 .contentType(JSON)
                 .body([
-                        code: "P001",
-                        name: "Product 1",
-                        price: 100.0,
+                        code             : "P001",
+                        name             : "Product 1",
+                        price            : 100.0,
                         dateOfManufacture: "2023-07-01",
-                        deadline: "2024-07-01"
+                        deadline         : "2024-07-01"
                 ])
                 .post("/api/products")
                 .then()

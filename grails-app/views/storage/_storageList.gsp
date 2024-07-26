@@ -1,5 +1,4 @@
-<p>${flash.message}</p>
-<table>
+<table class="table table-striped">
     <thead>
     <tr>
         <th>Code</th>
@@ -13,8 +12,8 @@
             <td>${storage.code}</td>
             <td>${storage.name}</td>
             <td>
-                <g:link action="edit" id="${storage.id}">Edit</g:link> |
-                <g:link action="delete" id="${storage.id}">Delete</g:link>
+                <g:link action="edit" id="${storage.id}" class="btn btn-primary btn-sm">Edit</g:link>
+                <g:link action="delete" id="${storage.id}" class="btn btn-danger btn-sm">Delete</g:link>
             </td>
         </tr>
     </g:each>

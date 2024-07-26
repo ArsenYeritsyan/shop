@@ -22,7 +22,7 @@ class UrlMappings {
         "/store/index"(controller: 'store', action: 'index')
 
 //        "/"(controller: 'application', action: 'index')
-        "/"(view:"/index")
+        "/"(view: "/index")
         "500"(view: '/error')
         "404"(view: '/notFound')
     }

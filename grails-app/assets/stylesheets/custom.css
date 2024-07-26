@@ -1,0 +1,25 @@
+body {
+    background-color: #2C3E50;
+    color: #ECF0F1;
+}
+
+.navbar, .btn, .form-control {
+    background-color: #16A085;
+    color: #ECF0F1;
+}
+
+.btn {
+    border: none;
+}
+
+.table {
+    background-color: #34495E;
+}
+
+.table th, .table td {
+    color: #ECF0F1;
+}
+
+.form-control {
+    border: 1px solid #16A085;
+}

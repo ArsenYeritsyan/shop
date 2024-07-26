@@ -4,8 +4,10 @@
     <meta name="layout" content="main"/>
     <title>Storages</title>
 </head>
+
 <body>
 <h1>Storages</h1>
+
 <p>${flash.message}</p>
 
 <!-- Storage List -->

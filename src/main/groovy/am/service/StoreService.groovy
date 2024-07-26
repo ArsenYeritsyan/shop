@@ -1,20 +1,45 @@
 package am.service
 
 import am.domain.Store
-import grails.gorm.services.Service
+import am.dto.StoreDTO
+import grails.gorm.transactions.Transactional
 
-@Service(Store)
-interface StoreService {
-    Store save(String code, String name, String address)
+@Transactional
+class StoreService {
+    Store save(StoreDTO storeDTO) {
+        def store = new Store(code: storeDTO.code, name: storeDTO.name, address: storeDTO.address)
+        store.save(failOnError: true)
+        return store
+    }
 
-    Store findById(Long id)
+    Store update(Long id, StoreDTO storeDTO) {
+        Store store = Store.get(id)
+        if (!store) {
+            throw new IllegalArgumentException("Store not found")
+        }
+        store.code = storeDTO.code
+        store.name = storeDTO.name
+        store.address = storeDTO.address
+        store.save(failOnError: true)
+        return store
+    }
 
-    List<Store> findAll()
+    Store findById(Long id) {
+        Store.get(id)
+    }
 
-    void deleteById(Long id)
-    Store findByCode(String code)
+    Store findByCode(String code) {
+        Store.findByCode(code)
+    }
 
-//    void addProduct(Long storeId, Long productId)
-//
-//    void removeProduct(Long storeId, Long productId)
+    List<Store> findAll() {
+        Store.list()
+    }
+
+    void deleteById(Long id) {
+        Store store = findById(id)
+        if (store) {
+            store.delete()
+        }
+    }
 }

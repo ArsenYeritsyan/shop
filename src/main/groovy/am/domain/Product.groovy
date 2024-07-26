@@ -1,6 +1,6 @@
 package am.domain
 
-import grails.persistence.Entity
+import grails.gorm.annotation.Entity
 
 @Entity
 class Product {
@@ -9,14 +9,16 @@ class Product {
     BigDecimal price
     Date dateOfManufacture
     Date deadline
+    Store store
 
     static belongsTo = [store: Store]
 
     static constraints = {
-        code blank: false, unique: true
-        name blank: false, maxSize: 255
-        price min: 0.0
+        code nullable: false, blank: false, unique: true
+        name nullable: false, blank: false
+        price nullable: false, min: 0.0
         dateOfManufacture nullable: false
         deadline nullable: true
+        store nullable: false
     }
 }
