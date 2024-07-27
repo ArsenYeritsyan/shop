@@ -1,7 +1,7 @@
 package am.service
 
-import am.domain.Storage
 import am.domain.Product
+import am.domain.Storage
 import am.dto.StorageDTO
 import grails.gorm.transactions.Transactional
 
