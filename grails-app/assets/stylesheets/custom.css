@@ -1,15 +1,16 @@
 body {
     background-color: #2C3E50;
-    color: #ECF0F1;
+    color: #169f84;
 }
 
 .navbar, .btn, .form-control {
     background-color: #16A085;
-    color: #ECF0F1;
+    color: #f2f6f6;
 }
 
 .btn {
     border: none;
+    color: #ECF0F1;
 }
 
 .table {
@@ -17,9 +18,17 @@ body {
 }
 
 .table th, .table td {
-    color: #ECF0F1;
+    color: #08987e;
 }
 
 .form-control {
     border: 1px solid #16A085;
+}
+
+.navbar-brand, .nav-link {
+    color: #ECF0F1 !important;
+}
+
+.nav-link:hover {
+    color: #1ABC9C !important;
 }

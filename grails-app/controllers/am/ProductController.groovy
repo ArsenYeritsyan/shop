@@ -14,7 +14,7 @@ class ProductController {
     static allowedMethods = [save: 'POST', update: 'POST', delete: 'POST', addToStorage: 'POST', removeFromStorage: 'POST']
 
     def index() {
-        respond([productList: productService.findAll(), storeList: storeService.findAll(), storageList: storageService.findAll()])
+        render([productList: productService.findAll(), storeList: storeService.findAll(), storageList: storageService.findAll()])
     }
 
     def save(ProductDTO productDTO) {

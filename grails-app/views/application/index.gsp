@@ -2,18 +2,19 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <g:set var="entityName" value="${message(code: 'application.label', default: 'Application')}"/>
-    <title><g:message code="default.list.label" args="[entityName]"/></title>
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.min.css')}"/>
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'custom.css')}"/>
+    <g:set var="entityName" value="${message(code: 'application.label', default: 'Application')}" />
+    <title><g:message code="default.list.label" args="[entityName]" /></title>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.min.css')}" />
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'custom.css')}" />
     <script src="${resource(dir: 'js', file: 'jquery.min.js')}"></script>
     <script src="${resource(dir: 'js', file: 'bootstrap.min.js')}"></script>
 </head>
-
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="#">My Shop</a>
-
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">

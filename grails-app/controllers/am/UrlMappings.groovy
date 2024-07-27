@@ -21,8 +21,9 @@ class UrlMappings {
         "/storage/index"(controller: 'storage', action: 'index')
         "/store/index"(controller: 'store', action: 'index')
 
-//        "/"(controller: 'application', action: 'index')
+        "/application/index"(controller: 'application', action: 'index',resources: 'product')
         "/"(view: "/index")
+
         "500"(view: '/error')
         "404"(view: '/notFound')
     }
