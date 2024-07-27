@@ -2,16 +2,18 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <g:set var="entityName" value="${message(code: 'application.label', default: 'Application')}" />
-    <title><g:message code="default.list.label" args="[entityName]" /></title>
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.min.css')}" />
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'custom.css')}" />
+    <g:set var="entityName" value="${message(code: 'application.label', default: 'Application')}"/>
+    <title><g:message code="default.list.label" args="[entityName]"/></title>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.min.css')}"/>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'custom.css')}"/>
     <script src="${resource(dir: 'js', file: 'jquery.min.js')}"></script>
     <script src="${resource(dir: 'js', file: 'bootstrap.min.js')}"></script>
 </head>
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="#">My Shop</a>
+
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">

@@ -5,6 +5,7 @@
     <title>Edit Storage</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+
 <body>
 <div class="container mt-5">
     <h1 class="mb-4">Edit Storage</h1>
@@ -14,6 +15,7 @@
             <label for="code">Code:</label>
             <g:textField name="code" value="${storage.code}" required="true" class="form-control"/>
         </div>
+
         <div class="form-group">
             <label for="name">Name:</label>
             <g:textField name="name" value="${storage.name}" required="true" class="form-control"/>

@@ -1,18 +1,14 @@
 package am
 
-import am.service.ProductService
-import am.service.ProductServiceI
-import am.service.StorageService
-import am.service.StorageServiceI
-import am.service.StoreService
-import am.service.StoreServiceI
 import am.dto.ProductDTO
 import am.dto.StorageDTO
 import am.dto.StoreDTO
+import am.service.ProductService
+import am.service.StorageService
+import am.service.StoreService
 
 import java.time.LocalDate
 import java.time.ZoneId
-import java.util.Date
 
 class BootStrap {
 
